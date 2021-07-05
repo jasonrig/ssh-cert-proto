@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package paramiko_cloud;
+
+import "csr.proto";
+
+message CloudCertificateSigningRequest {
+  enum Provider {
+    AWS = 0;
+    AZURE = 1;
+    GCP = 2;
+  }
+
+  Provider provider = 1;
+  string kmsKeyId = 2;
+  CSR signingRequestPayload = 3;
+}
+
+message CloudCertificateSigningResponse {
+  bytes certificate = 1;
+}
+
+service Signer {
+  rpc SignCertificate(CloudCertificateSigningRequest) returns (CloudCertificateSigningResponse) {}
+}
