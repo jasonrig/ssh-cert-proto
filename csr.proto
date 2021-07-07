@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package paramiko_cloud;
+package ssh_cert;
 
 message CSR {
   enum Type {
