@@ -4,14 +4,14 @@ package ssh_cert;
 
 import "csr.proto";
 
-message CloudCertificateSigningRequest {
-  enum Provider {
-    AWS = 0;
-    AZURE = 1;
-    GCP = 2;
-  }
+enum CloudProvider {
+  AWS = 0;
+  AZURE = 1;
+  GCP = 2;
+}
 
-  Provider provider = 1;
+message CloudCertificateSigningRequest {
+  CloudProvider provider = 1;
   string kmsKeyId = 2;
   CSR signingRequestPayload = 3;
 }
@@ -20,6 +20,18 @@ message CloudCertificateSigningResponse {
   bytes certificate = 1;
 }
 
+message GetCertificateAuthorityRequest {
+  CloudProvider provider = 1;
+  string kmsKeyId = 2;
+}
+
+message GetCertificateAuthorityResponse {
+  string keyType = 1;
+  bytes publicKey = 2;
+}
+
 service Signer {
   rpc SignCertificate(CloudCertificateSigningRequest) returns (CloudCertificateSigningResponse) {}
+  rpc GetCertificateAuthority(GetCertificateAuthorityRequest) returns (GetCertificateAuthorityResponse) {}
 }
+
