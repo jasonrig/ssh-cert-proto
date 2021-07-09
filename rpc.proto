@@ -17,7 +17,8 @@ message CloudCertificateSigningRequest {
 }
 
 message CloudCertificateSigningResponse {
-  bytes certificate = 1;
+  string certificateType = 1;
+  bytes certificate = 2;
 }
 
 message GetCertificateAuthorityRequest {
@@ -34,4 +35,3 @@ service Signer {
   rpc SignCertificate(CloudCertificateSigningRequest) returns (CloudCertificateSigningResponse) {}
   rpc GetCertificateAuthority(GetCertificateAuthorityRequest) returns (GetCertificateAuthorityResponse) {}
 }
-
