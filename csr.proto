@@ -10,7 +10,7 @@ message CSR {
 
   enum CriticalOption {
     FORCE_COMMAND = 0;
-    SOURCE_COMMAND = 1;
+    SOURCE_ADDRESS = 1;
   }
 
   message CriticalOptionValue {
