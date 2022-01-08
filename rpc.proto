@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package ssh_cert;
+option go_package = "github.com/jasonrig/go-ssh-cert-grpc";
 
 import "csr.proto";
 
